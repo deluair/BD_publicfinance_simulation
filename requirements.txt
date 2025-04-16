@@ -1,0 +1,12 @@
+pandas
+numpy
+matplotlib
+Jinja2
+# PyMC3 # For Bayesian estimation
+# NetworkX # For relationship mapping/contagion
+# Prophet # For forecasting
+# scikit-learn # For predictive components
+# Mesa # For agent-based modeling
+# PySD # For system dynamics
+# Dash # For dashboards
+# Plotly # For plotting

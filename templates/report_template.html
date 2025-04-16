@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Report: Bangladesh Public Finance</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 8px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 35px;
+            color: #004085;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 18px;
+            border: 1px solid #e9ecef;
+            text-align: left;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #e9ecef;
+            font-weight: bold;
+            color: #495057;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        tr:nth-child(even) td {
+            background-color: #f8f9fa;
+        }
+        .plot-container {
+            margin-bottom: 40px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9ecef;
+        }
+        .plot-container img {
+            max-width: 95%;
+            height: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .plot-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bangladesh Public Finance Simulation Report</h1>
+        <p>Simulation Period: {{ start_year }} - {{ end_year }}</p>
+
+        <h2>Summary Statistics (Final Year: {{ end_year }})</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Indicator</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in final_year_summary.items() %}
+                <tr>
+                    <td>{{ key.replace('_', ' ') }}</td>
+                    <td>{{ value | format_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Key Variable Trends</h2>
+        {% for var, plot_file in plot_files.items() %}
+            <div class="plot-container">
+                <div class="plot-title">{{ plot_titles.get(var, var.replace('_', ' ')) }}</div>
+                <img src="{{ plot_file }}" alt="Plot for {{ var }}">
+            </div>
+        {% else %}
+            <p>No plots were generated.</p>
+        {% endfor %}
+
+        <div class="footer">
+            Report generated on {{ generation_date }}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+# Configuration for Bangladesh Public Finance Simulation
+
+simulation:
+  start_year: 2025
+  end_year: 2050
+  # Placeholder for baseline economic assumptions (could be loaded from data later)
+  initial_gdp: 45000000 # Example: BDT 45 Trillion (approx USD 450 Billion)
+  initial_gdp_growth: 0.065
+  initial_inflation: 0.07
+  base_real_gdp_growth: 0.06 # Assumed underlying trend
+  inflation_persistence: 0.7 # How much last year's inflation carries over
+
+revenue_model:
+  initial_tax_gdp_ratio: 0.085
+  tax_potential_elasticity_gdp: 1.1
+  structural_constraint_factor: 0.8 # Max potential capturable due to informality etc.
+  admin_capacity_initial: 0.6
+  admin_capacity_growth_rate: 0.015
+  compliance_rate_initial: 0.5
+  compliance_sensitivity_admin: 0.2
+  compliance_sensitivity_governance: 0.1
+
+expenditure_model:
+  initial_spending_gdp_ratio: 0.14 # Initial total spending target
+  base_implementation_efficiency: 0.85
+  efficiency_sensitivity_pfm: 0.15
+  base_spending_quality: 0.7
+  quality_sensitivity_governance: 0.2
+  base_accountability_factor: 0.8 # Represents reduction in waste
+  accountability_sensitivity_governance: 0.25
+  recurrent_spending_share: 0.65 # Share of total spending
+  development_spending_share: 0.35 # Share of total spending
+
+
+debt_model:
+  initial_debt_gdp_ratio: 0.38
+  avg_interest_rate_domestic: 0.08
+  avg_interest_rate_external: 0.025
+  # Debt Sustainability Analysis thresholds
+  dsa_debt_gdp_threshold: 0.60
+  dsa_service_revenue_threshold: 0.20
+  share_domestic_financing: 0.7 # Share of deficit financed domestically
+
+financial_sector:
+  initial_npl_ratio: 0.11
+  npl_sensitivity_gdp_growth: -0.3 # Higher growth reduces NPLs
+  npl_sensitivity_supervision: -0.2 # Better supervision reduces NPLs
+  initial_car_ratio: 0.12
+  car_sensitivity_npl: -0.05 # Higher NPLs reduce CAR
+  car_sensitivity_supervision: 0.02 # Better supervision improves CAR
+  financial_stability_npl_weight: 0.6
+  financial_stability_car_weight: 0.4
+
+monetary_policy:
+  target_inflation_band: [0.05, 0.07] # Target inflation band
+  initial_policy_rate: 0.065
+  inflation_gap_weight: 1.5 # Taylor rule coefficient
+  policy_transmission_lag: 0.1 # Impact on next period's inflation per 1% rate change
+
+policy_coordination:
+  base_coordination_score: 0.6
+  conflict_threshold_inflation: 0.08
+  conflict_threshold_deficit: 0.06 # Deficit/GDP
+  conflict_impact: -0.1
+  institutional_impact: 0.05
+
+governance_model:
+  initial_pfm_level: 0.45
+  initial_nbr_level: 0.50
+  initial_cb_level: 0.65
+  initial_ac_level: 0.35 # Anti-corruption
+  initial_accountability_score: 0.40
+  pfm_improvement_rate: 0.015
+  nbr_improvement_rate: 0.012
+  cb_improvement_rate: 0.008
+  ac_improvement_rate: 0.010
+  accountability_improvement_rate: 0.012
+  governance_weights:
+    pfm: 0.25
+    nbr: 0.20
+    cb: 0.15
+    ac: 0.20
+    accountability: 0.20
+
+supervision_model:
+  initial_supervision_effectiveness: 0.6
+  cb_capacity_weight: 0.5
+  financial_stability_weight: 0.3
+  regulatory_reform_impact: 0.01
+
+soe_model:
+  initial_soe_performance: 0.45
+  initial_soe_debt_gdp: 0.08
+  soe_gdp_sensitivity: 0.3
+  soe_governance_sensitivity: 0.2
+  soe_debt_drag: -0.1
+  soe_dividend_payout: 0.25
+  soe_transfer_threshold: 0.35
+  soe_transfer_scale: 0.015 # Transfers as % of SOE Debt
+
+external_sector:
+  initial_export_gdp: 0.14
+  initial_import_gdp: 0.21
+  initial_remittance_gdp: 0.06
+  initial_fdi_gdp: 0.015
+  initial_reserves_months_import: 5.5
+  export_global_growth_sens: 1.6
+  import_domestic_growth_sens: 1.3
+  remittance_global_growth_sens: 0.7
+  fdi_governance_sens: 0.06
+  global_growth_factor: 1.02 # Base assumption
+
+fiscal_federalism:
+  transfer_ratio_central_revenue: 0.12
+  initial_subnational_revenue_gdp: 0.006
+  subnational_revenue_capacity_growth: 0.015
+  subnational_spending_efficiency: 0.75
+  subnational_debt_limit_gdp: 0.025
+
+development_finance:
+  initial_grant_aid_gdp: 0.007
+  initial_dfi_net_lending_gdp: 0.018
+  grant_global_factor_sens: 0.6
+  dfi_lending_governance_sens: 0.35
+  absorption_capacity_sens: 0.45
